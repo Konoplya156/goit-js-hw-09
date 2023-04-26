@@ -4,7 +4,6 @@ const refs = {
   formInputEl: document.querySelector('.form'),
 };
 
-let timeId = null;
 
 refs.formInputEl.addEventListener('submit', onFormSubmit);
 
@@ -12,7 +11,6 @@ refs.formInputEl.addEventListener('submit', onFormSubmit);
 
 function onFormSubmit(evt) {
   evt.preventDefault();
-  clearTimeout(timeId);
 
   const { delay, step, amount } = evt.target.elements;
   let stepValue = Number(delay.value);
@@ -42,7 +40,7 @@ function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
 
   return new Promise((resolve, reject) => {
-    timeId = setTimeout(() => {
+     setTimeout(() => {
       if (shouldResolve) {
         resolve({ position, delay });
       } else {
